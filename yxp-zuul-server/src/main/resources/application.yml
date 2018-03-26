@@ -1,0 +1,36 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://malson:123@localhost:8761/eureka
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    appname: yxp-zuul-server
+zuul:
+  ignored-services: '*'
+  routes:
+    yxp-user:
+      path: /yxp-user/**
+      serviceId: yxp-user
+      stripPrefix: true
+    yxp-post:
+      path: /yxp-post/**
+      serviceId: yxp-post
+      stripPrefix: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+logging:
+  level:
+    root: info
+spring:
+  application:
+    name: yxp-zuul-server
+server:
+  port: 8801

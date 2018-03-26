@@ -1,0 +1,20 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://malson:123@localhost:8761/eureka
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    appname: yxp-turbine-server
+spring:
+  application:
+    name: yxp-turbine-server
+server:
+  port: 8901
+turbine:
+  aggregator:
+    clusterConfig: default
+  clusterNameExpression: "'default'"
+  appConfig: yxp-user,yxp-post

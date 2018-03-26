@@ -1,0 +1,31 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://malson:123@localhost:8761/eureka
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    appname: yxp-user
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.sleuth: INFO
+spring:
+  application:
+    name: yxp-user
+  zipkin:
+    base-url: http://127.0.0.1:9411
+    service:
+      name: ${spring.application.name}
+    enabled: true
+  sleuth:
+    enabled: true
+    sampler:
+      percentage: 0.1
+server:
+  port: 8080
+management:
+  security:
+    enabled: false

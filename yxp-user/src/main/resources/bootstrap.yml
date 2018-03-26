@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    config:
+      profile: dev
+      label: master
+      discovery:
+        enabled: true
+        service-id: yxp-config-server
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://malson:123@localhost:8761/eureka
